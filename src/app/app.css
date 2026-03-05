@@ -1,0 +1,32 @@
+/* El botón por defecto (apagado pero elegante) */
+.nav-btn {
+  background-color: #1a1a1a;
+  color: #b3b3b3;
+  border: 1px solid #333;
+  padding: 8px 24px;
+  border-radius: 25px; /* Forma de píldora */
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transición súper suave */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio por si quieres meterle un icono luego */
+}
+
+/* Efecto al pasar el ratón por encima (Hover) */
+.nav-btn:hover {
+  background-color: #333;
+  color: #fff;
+  border-color: #e50914; /* Un toque de rojo Netflix en el borde */
+  transform: translateY(-2px); /* Se levanta un poquito */
+  box-shadow: 0 4px 10px rgba(229, 9, 20, 0.2); /* Resplandor sutil */
+}
+
+/* El botón cuando estás en esa pantalla (Activo) */
+.nav-btn.active {
+  background-color: #e50914; /* Fondo rojo intenso */
+  color: #fff;
+  border-color: #e50914;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4); /* Resplandor más fuerte */
+}

@@ -19,4 +19,23 @@ export class SerieService {
   saveSerie(tvmazeId: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/series`, { tvmaze_id: tvmazeId });
   }
+
+  getSeries(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/series`);
+  }
+
+  // Actualizar el estado de una temporada
+  updateSeason(seasonId: number, isSeen: boolean): Observable<any> {
+    return this.http.put(`${this.apiUrl}/seasons/${seasonId}`, { is_seen: isSeen });
+  }
+
+  // Borrar una serie completa
+  deleteSerie(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/series/${id}`);
+  }
+
+  updateSerieStatus(id: number, isCompleted: boolean): Observable<any> {
+    return this.http.put(`${this.apiUrl}/series/${id}/status`, { is_completed: isCompleted });
+  }
+  
 }

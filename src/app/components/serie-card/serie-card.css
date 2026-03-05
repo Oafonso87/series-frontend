@@ -1,0 +1,214 @@
+/* Contenedor principal: define el tamaño y la perspectiva 3D */
+.card-container {
+  width: 200px;
+  height: 300px;
+  perspective: 1000px; 
+  cursor: pointer;
+  margin: 15px;
+  display: inline-block; /* Para que se pongan una al lado de otra */
+}
+
+/* La pieza que realmente gira */
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+/* Clase que aplicará Angular cuando pulses (el giro) */
+.card-container.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Estilo común para ambas caras */
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Oculta la espalda al girar */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+}
+
+/* Cara Frontal: El póster */
+.card-front {
+  background-color: #333;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cara Trasera: Datos y temporadas*/
+/*.card-back {
+  background-color: #1a1a1a;
+  color: white;
+  transform: rotateY(180deg);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box; 
+/*
+
+/* 1. Aseguramos que la cara trasera use todo el espacio disponible */
+.card-back {
+  background-color: #1a1a1a;
+  color: white;
+  transform: rotateY(180deg);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%; /* Importante */
+}
+
+.card-back h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #e50914; /* Rojo tipo Netflix */
+  text-align: center;
+}
+
+.card-back .date {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Contenedor de las temporadas */
+/* .seasons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+} */
+
+/* 4. Ajustamos la rejilla para que los números no queden tan apretados */
+.seasons-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding-bottom: 40px; /* Espacio extra para que el botón de borrar no tape la última fila */
+}
+
+/* Los botones de las temporadas */
+.season-badge {
+  border: none;
+  padding: 6px 2px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.season-badge:hover {
+  transform: scale(1.1);
+}
+
+/* Tus colores personalizados */
+.season-badge.seen {
+  background-color: #28a745; /* Verde si NO la has visto */
+}
+
+.season-badge.not-seen {
+  background-color: #dc3545; /* Rojo si YA la has visto */
+}
+
+/* Estilo para el botón del icono de borrar */
+.delete-icon-btn {
+  position: absolute;
+  bottom: 10px; /* Separación de la parte inferior */
+  right: 18px;  /* Separación de la parte derecha */
+  background: transparent;
+  color: #ff4444; /* Rojo suave */
+  border: none;
+  padding: 5px;
+  font-size: 1.2rem; /* Tamaño del icono */
+  cursor: pointer;
+  transition: color 0.2s, transform 0.2s;
+  z-index: 20; /* Asegura que esté por encima de otros elementos */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-icon-btn:hover {
+  color: #e50914; /* Rojo brillante tipo Netflix al pasar el ratón */
+  transform: scale(1.1); /* Efecto de aumento suave */
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+}
+
+
+
+/* 2. El contenedor de temporadas ahora será el que mande */
+.seasons-container {
+  flex: 1; /* Ocupa todo el espacio restante entre el título y el botón de borrar */
+  overflow-y: auto; /* Si no cabe, aparece el scroll */
+  margin-top: 10px;
+  padding-right: 8px; /* Espacio para que la barra de scroll no pise los números */
+  padding-bottom: 45px;
+  box-sizing: border-box;
+}
+
+/* 3. Personalizamos la barra de scroll para que sea elegante (estilo Netflix) */
+.seasons-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.seasons-container::-webkit-scrollbar-track {
+  background: #222;
+}
+
+.seasons-container::-webkit-scrollbar-thumb {
+  background: #e50914; /* Rojo */
+  border-radius: 10px;
+}
+
+/* Etiqueta en el póster (Cara frontal) */
+.completed-badge {
+  position: absolute;
+  top: 10px;
+  right: -5px; /* Un poco sobresalido para efecto cinta */
+  background-color: #ffc107; /* Dorado */
+  color: #000;
+  padding: 5px 15px;
+  font-weight: bold;
+  font-size: 0.7rem;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  border-radius: 3px 0 0 3px;
+}
+
+/* Botón de completar (Cara trasera - Izquierda) */
+.complete-icon-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 12px; /* A la izquierda */
+  background: transparent;
+  color: #aaa; /* Gris por defecto */
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 20;
+}
+
+/* Color cuando está completada */
+.complete-icon-btn.is-completed {
+  color: #28a745; /* Verde */
+  transform: scale(1.1);
+}
+
+.complete-icon-btn:hover {
+  color: #28a745;
+}
+

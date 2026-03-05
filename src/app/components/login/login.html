@@ -1,0 +1,25 @@
+<div class="login-container d-flex justify-content-center align-items-center vh-100 bg-dark text-white">
+  <div class="card bg-secondary p-4 shadow-lg" style="width: 100%; max-width: 400px;">
+    <h2 class="text-center mb-4 text-danger fw-bold">Mi Colección</h2>
+    
+    @if (errorMessage) {
+      <div class="alert alert-danger">{{ errorMessage }}</div>
+    }
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control text-white bg-dark border-secondary" 
+               [(ngModel)]="credentials.email" name="email" required>
+      </div>
+      
+      <div class="mb-4">
+        <label class="form-label">Contraseña</label>
+        <input type="password" class="form-control text-white bg-dark border-secondary" 
+               [(ngModel)]="credentials.password" name="password" required>
+      </div>
+
+      <button type="submit" class="btn btn-danger w-100 fw-bold">Entrar</button>
+    </form>
+  </div>
+</div>

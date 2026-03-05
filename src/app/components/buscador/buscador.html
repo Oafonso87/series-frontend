@@ -1,0 +1,24 @@
+<div class="search-container">
+  <div class="search-box">
+    <input 
+      type="text" 
+      [(ngModel)]="searchTerm" 
+      (keyup.enter)="search()"
+      placeholder="Escribe el nombre de una serie..."
+    >
+    <button (click)="search()">Buscar</button>
+  </div>
+
+  <div class="results-grid">
+    @for (res of results; track res.show.id) {
+      <div class="result-item">
+        <img [src]="res.show.image?.medium || 'assets/no-image.png'" alt="Poster">
+        <div class="result-info">
+          <h4>{{ res.show.name }}</h4>
+          <p>{{ res.show.premiered | date:'yyyy' }}</p>
+          <button class="add-btn" (click)="addSerie(res.show.id)">+ Añadir a mi lista</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

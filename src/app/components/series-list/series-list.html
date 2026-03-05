@@ -1,0 +1,24 @@
+<div class="container">
+  
+  <div class="filter-bar">
+    <button class="filter-btn" [class.active]="selectedFilter === ''" (click)="showAll()">TODAS</button>
+    
+    @for (num of numbers; track num) {
+      <button class="filter-btn" [class.active]="selectedFilter === num" (click)="filterBy(num)">{{ num }}</button>
+    }
+
+    @for (letter of alphabet; track letter) {
+      <button class="filter-btn" [class.active]="selectedFilter === letter" (click)="filterBy(letter)">{{ letter }}</button>
+    }
+  </div>
+
+  <div class="series-grid">
+    @for (item of filteredSeries; track item.id) {
+<!--       <app-serie-card [serie]="item"></app-serie-card>-->
+      <app-serie-card [serie]="item" (serieDeleted)="onSerieDeleted($event)"></app-serie-card>
+    } @empty {
+      <p style="color: white; text-align: center;">No hay series que empiecen por esta letra.</p>
+    }
+  </div>
+
+</div>
