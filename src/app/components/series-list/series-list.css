@@ -36,6 +36,7 @@
 .series-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 25px;
+  gap: 15px;
+  padding: 15px;
   justify-items: center;
 }

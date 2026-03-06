@@ -2,7 +2,7 @@
 @if (!isAuthenticated) {
   <app-login (loginSuccess)="onLoginSuccess()"></app-login>
 } @else {
-  <nav style="background: #000; padding: 15px; display: flex; align-items: center;">
+  <!-- <nav style="background: #000; padding: 15px; display: flex; align-items: center;">
   
     <div style="flex: 1;"></div>
     
@@ -26,7 +26,36 @@
       <button (click)="logout()" class="btn btn-outline-danger btn-sm">Salir</button>
     </div>
 
-  </nav>
+  </nav> -->
+  <nav class="bg-black p-3 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+  
+  <div class="d-none d-md-block flex-grow-1"></div>
+  
+  <div class="d-flex gap-2 justify-content-center w-100 flex-grow-1">
+    <button 
+      (click)="view = 'list'" 
+      class="nav-btn flex-fill justify-content-center" 
+      [class.active]="view === 'list'">
+      <i class="bi bi-collection-play"></i> 
+      <span class="d-none d-sm-inline ms-1">Colección</span> </button>
+    
+    <button 
+      (click)="view = 'add'" 
+      class="nav-btn flex-fill justify-content-center" 
+      [class.active]="view === 'add'">
+      <i class="bi bi-search"></i> 
+      <span class="d-none d-sm-inline ms-1">Añadir</span>
+    </button>
+  </div>
+  
+  <div class="d-flex justify-content-end w-100 flex-grow-1" style="max-width: 400px;">
+    <button (click)="logout()" class="btn btn-outline-danger btn-sm w-100 w-md-auto">
+      <i class="bi bi-box-arrow-right"></i> Salir
+    </button>
+  </div>
+
+</nav>
+
   
 
   @if (view === 'list') {

@@ -37,5 +37,10 @@ export class SerieService {
   updateSerieStatus(id: number, isCompleted: boolean): Observable<any> {
     return this.http.put(`${this.apiUrl}/series/${id}/status`, { is_completed: isCompleted });
   }
+
+  addSeason(serieId: number): Observable<any> {
+  // Mandamos un POST vacío porque Laravel ya hace todo el cálculo internamente
+  return this.http.post(`${this.apiUrl}/series/${serieId}/seasons`, {});
+}
   
 }

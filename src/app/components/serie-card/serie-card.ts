@@ -49,4 +49,22 @@ export class SerieCard {
       this.serie.is_completed = nuevoEstado;
     });
   }
+
+  addNewSeason(event: Event) {
+    event.stopPropagation(); // Para no girar la tarjeta
+    
+    this.serieService.addSeason(this.serie.id).subscribe({
+      next: (res) => {
+        // res.data trae la temporada recién creada de Laravel
+        this.serie.seasons.push(res.data);
+        
+        // Opcional: Si añades temporada, lógicamente la serie ya no está finalizada
+        if (this.serie.is_completed) {
+          this.serie.is_completed = false;
+          this.serieService.updateSerieStatus(this.serie.id, false).subscribe();
+        }
+      },
+      error: (err) => console.error('Error al añadir temporada', err)
+    });
+  }
 }
