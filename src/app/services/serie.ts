@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SerieService {
-  private apiUrl = 'http://127.0.0.1:8000/api'; // La URL de tu Laravel
+  // private apiUrl = 'http://localhost:8000/api'; <-- Borra o comenta esta
+  private apiUrl = 'https://series-api-d1vr.onrender.com/api'; // <-- Pon esta
 
   constructor(private http: HttpClient) { }
 

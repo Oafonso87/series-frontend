@@ -6,7 +6,8 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class Auth {
-  private apiUrl = 'http://localhost:8000/api';
+  // private apiUrl = 'http://localhost:8000/api'; <-- Borra o comenta esta
+  private apiUrl = 'https://series-api-d1vr.onrender.com/api'; // <-- Pon esta  
 
   constructor(private http: HttpClient) {}
 
