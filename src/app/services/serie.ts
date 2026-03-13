@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SerieService {
-  private apiUrl = 'http://localhost:8000/api';
-  // private apiUrl = 'https://series-api-d1vr.onrender.com/api';
+  // private apiUrl = 'http://localhost:8000/api';
+  private apiUrl = 'https://series-api-d1vr.onrender.com/api';
 
   constructor(private http: HttpClient) { }
 
