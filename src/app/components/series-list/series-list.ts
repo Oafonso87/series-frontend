@@ -1,15 +1,3 @@
-/* import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-series-list',
-  imports: [],
-  templateUrl: './series-list.html',
-  styleUrl: './series-list.css',
-})
-export class SeriesList {
-
-}
- */
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SerieService } from '../../services/serie';
@@ -36,14 +24,7 @@ export class SeriesList implements OnInit {
     this.loadSeries();
   }
 
-  /* loadSeries() {
-    this.serieService.getSeries().subscribe(data => {
-      this.allSeries = data;
-      this.filteredSeries = data; // Al principio mostramos todas
-    });
-  } */
-
-    loadSeries() {
+  loadSeries() {
     this.serieService.getSeries().subscribe(data => {
       this.allSeries = data;
       this.filteredSeries = [...data]; // <--- Esto asegura que al cargar aparezcan todas
@@ -68,6 +49,24 @@ export class SeriesList implements OnInit {
     // Quitamos la serie del array localmente
     this.allSeries = this.allSeries.filter(s => s.id !== id);
     this.filteredSeries = this.filteredSeries.filter(s => s.id !== id);
+  }
+
+  searchByName(event: any) {
+    const term = event.target.value.toLowerCase();
+    
+    // Si el usuario borra todo el texto, volvemos a mostrar todas
+    if (!term) {
+      this.showAll();
+      return;
+    }
+
+    // Quitamos la marca visual de la letra seleccionada para no confundir
+    this.selectedFilter = '';
+
+    // Filtramos buscando coincidencias en cualquier parte del título
+    this.filteredSeries = this.allSeries.filter(s => 
+      s.title.toLowerCase().includes(term)
+    );
   }
 
 }

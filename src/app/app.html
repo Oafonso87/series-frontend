@@ -2,31 +2,7 @@
 @if (!isAuthenticated) {
   <app-login (loginSuccess)="onLoginSuccess()"></app-login>
 } @else {
-  <!-- <nav style="background: #000; padding: 15px; display: flex; align-items: center;">
   
-    <div style="flex: 1;"></div>
-    
-    <div style="display: flex; gap: 15px;">
-      <button 
-        (click)="view = 'list'" 
-        class="nav-btn" 
-        [class.active]="view === 'list'">
-        Mi Colección
-      </button>
-      
-      <button 
-        (click)="view = 'add'" 
-        class="nav-btn" 
-        [class.active]="view === 'add'">
-        + Añadir Serie
-      </button>
-    </div>
-    
-    <div style="flex: 1; display: flex; justify-content: flex-end;">
-      <button (click)="logout()" class="btn btn-outline-danger btn-sm">Salir</button>
-    </div>
-
-  </nav> -->
   <nav class="bg-black p-3 d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
   
   <div class="d-none d-md-block flex-grow-1"></div>

@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   
   <div class="filter-bar">
     <button class="filter-btn" [class.active]="selectedFilter === ''" (click)="showAll()">TODAS</button>
@@ -14,10 +14,47 @@
 
   <div class="series-grid">
     @for (item of filteredSeries; track item.id) {
-<!--       <app-serie-card [serie]="item"></app-serie-card>-->
       <app-serie-card [serie]="item" (serieDeleted)="onSerieDeleted($event)"></app-serie-card>
     } @empty {
       <p style="color: white; text-align: center;">No hay series que empiecen por esta letra.</p>
+    }
+  </div>
+
+</div> -->
+
+<div class="container">
+  
+  <div class="search-bar mb-3 mt-3">
+    <div class="input-group">
+      <span class="input-group-text bg-dark text-white border-secondary">
+        <i class="bi bi-search"></i>
+      </span>
+      <input 
+        type="text" 
+        class="form-control bg-dark text-white border-secondary shadow-none" 
+        placeholder="Buscar entre mis 1000 series..." 
+        (input)="searchByName($event)"
+      >
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn" [class.active]="selectedFilter === ''" (click)="showAll()">TODAS</button>
+    
+    @for (num of numbers; track num) {
+      <button class="filter-btn" [class.active]="selectedFilter === num" (click)="filterBy(num)">{{ num }}</button>
+    }
+
+    @for (letter of alphabet; track letter) {
+      <button class="filter-btn" [class.active]="selectedFilter === letter" (click)="filterBy(letter)">{{ letter }}</button>
+    }
+  </div>
+
+  <div class="series-grid">
+    @for (item of filteredSeries; track item.id) {
+      <app-serie-card [serie]="item" (serieDeleted)="onSerieDeleted($event)"></app-serie-card>
+    } @empty {
+      <p style="color: white; text-align: center; margin-top: 2rem;">No se ha encontrado ninguna serie con ese nombre.</p>
     }
   </div>
 
